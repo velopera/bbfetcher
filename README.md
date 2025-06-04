@@ -1,5 +1,5 @@
 # bbfetcher
-bbfetcher is a Python API for fetching and unpacking Git repositories using BitBake-style URIs.
+bbfetcher is a Python [API](https://github.com/velopera/bbfetcher/blob/main/API.md) for fetching and unpacking Git repositories using BitBake-style URIs.
 It wraps BitBake's internal fetch2 modules to provide an easy way to fetch source code archives or Git repos without manual git cloning.
 
 ---
