@@ -23,11 +23,15 @@ Git (for repository operations)
 git clone https://github.com/velopera/bbfetcher.git
 cd bbfetcher
 pip install .
+# To verify the installation:
+python3 test.py
 ```
 or directly from the repository directory:
 
 ```bash
 python setup.py install
+# To verify the installation:
+python3 test.py
 ```
 Basic Usage
 ```python
