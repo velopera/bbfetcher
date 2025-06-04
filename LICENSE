@@ -1,0 +1,9 @@
+This project uses and incorporates components from the BitBake project.
+
+BitBake is licensed under the GNU General Public License version 2.0 (GPL-2.0-only).  
+You can find the full license text here:  
+https://github.com/openembedded/bitbake/blob/master/LICENSE.GPL-2.0-only
+
+Accordingly, this project is licensed under the GPL-2.0-only license.
+
+SPDX-License-Identifier: GPL-2.0-only
