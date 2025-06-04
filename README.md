@@ -1,81 +1,95 @@
 # bbfetcher
-
-`bbfetcher` is a Python API for fetching and unpacking Git repositories using BitBake-style URIs.  
+bbfetcher is a Python API for fetching and unpacking Git repositories using BitBake-style URIs.
 It wraps BitBake's internal fetch2 modules to provide an easy way to fetch source code archives or Git repos without manual git cloning.
 
 ---
-
 ## Features
-
-- Fetch Git repositories using BitBake SRC_URI style URLs.
-- Automatically resolve revisions and branches.
-- Downloads to a configurable directory.
-- Unpacks bare Git repositories to a local directory.
-- Minimal external dependencies.
-
-## Requirements
-
-- Python 3.9 or higher.
+- Fetch Git repositories using BitBake SRC_URI style URLs
+- Automatically resolve revisions and branches
+- Support for multiple repositories in one operation
+- Downloads to a configurable directory
+- Unpacks bare Git repositories to a local directory with proper checkout
+- Tracks fetched repositories and their metadata
+- Minimal external dependencies
 
 ---
 
-## Getting Started
+## Requirements
+Python 3.9 or higher
+Git (for repository operations)
 
-Clone or download this repository and import the `BitBakeFetcher` class in your Python project.
-
-or under this repository directory:
-
+## Installation
 ```bash
+git clone https://github.com/velopera/bbfetcher.git
+cd bbfetcher
 pip install .
 ```
+or directly from the repository directory:
 
-### Example
-
+```bash
+python setup.py install
+```
+Basic Usage
 ```python
 from bbfetcher import BitBakeFetcher
 
-# Initialize fetcher with download directory
-fetcher = BitBakeFetcher(download_dir="downloads/")
+# Initialize fetcher with custom download directory
+fetcher = BitBakeFetcher(download_dir="tmp/bare_repos")
 
-# Fetch the Git repository, resolving branch and revision automatically
+# Fetch a single repository
 local_path = fetcher.fetch("git://github.com/SecOPERA-toffy/toffy-oatpp.git;branch=main;protocol=https")
 
-print(f"Downloaded bare repository to: {local_path}")
+# Unpack to specific directory
+unpacked_path = fetcher.unpack(uri="git://github.com/SecOPERA-toffy/toffy-oatpp.git;branch=main;protocol=https", 
+                              destdir="custom/destination")
 
-# Unpack the bare repo into a usable source directory
-fetcher.unpack(destdir="unpacked/toffy-oatpp")
-
-print("Repository unpacked to 'unpacked/toffy-oatpp'")
+# Process multiple repositories at once
+uris = [
+    "git://github.com/example/repo1.git;branch=main",
+    "git://github.com/example/repo2.git;rev=abc123"
+]
+results = fetcher.fetch_and_unpack_all(uris)
 ```
 
-### Test
+## Advanced Features
+### Repository Tracking
+The fetcher maintains state of all fetched repositories including:
 
-```bash
-python3 test.py
-```
----
+- Original URI
 
-## Usage Notes
-- The fetch method downloads the bare Git repository into the specified download directory.
+- Resolved commit
 
-- The unpack method checks out the correct commit into the specified destination directory without cloning again.
+- Local paths
 
-- The revision used is automatically resolved from the provided URI or defaults to main branch.
+### Automatic Revision Resolution
+When a branch is specified but no revision, the latest commit is automatically resolved.
 
-- Designed primarily for BitBake-style source fetching workflows but can be adapted for other use cases.
+### Custom Destination Paths
+You can specify exact unpack locations or let the fetcher generate them automatically.
 
 ## Project Structure
-- bbfetcher/fetcher.py: Main fetcher class wrapping BitBake fetch2 functionality.
+- bbfetcher/
+`
+- fetcher.py: Main fetcher class implementation
 
-- bbfetcher/__init__.py: Module export for easy import.
+- __init__.py: Package exports
 
-- main.py: Example script demonstrating usage.
+- test.py: Example usage script
 
-- requirements.txt: Python dependencies (currently minimal).
+- setup.py: Package installation configuration
 
+## Error Handling
+The fetcher provides clear error messages for:
+
+- Invalid URIs
+
+- Network failures
+
+- Repository resolution issues
+
+- Destination directory conflicts
 
 ## License
-
 This project is licensed under the GNU General Public License version 2.0 (GPL-2.0-only), consistent with the BitBake project it uses.
 
 See the LICENSE file for more details.
