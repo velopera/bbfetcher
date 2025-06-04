@@ -15,13 +15,19 @@ It wraps BitBake's internal fetch2 modules to provide an easy way to fetch sourc
 
 ## Requirements
 
-- Python 3.9 or higher
+- Python 3.9 or higher.
 
 ---
 
 ## Getting Started
 
 Clone or download this repository and import the `BitBakeFetcher` class in your Python project.
+
+or under this repository directory:
+
+```bash
+pip install .
+```
 
 ### Example
 
