@@ -11,7 +11,7 @@ setup(
     install_requires=[],
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: GPL-2.0-only",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.9',
