@@ -13,6 +13,10 @@ It wraps BitBake's internal fetch2 modules to provide an easy way to fetch sourc
 - Unpacks bare Git repositories to a local directory.
 - Minimal external dependencies.
 
+## Requirements
+
+- Python 3.9 or higher
+
 ---
 
 ## Getting Started
