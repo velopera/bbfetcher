@@ -97,3 +97,7 @@ The fetcher provides clear error messages for:
 This project is licensed under the GNU General Public License version 2.0 (GPL-2.0-only), consistent with the BitBake project it uses.
 
 See the LICENSE file for more details.
+
+---
+
+*This work has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No. 101070599 (SecOPERA)*
